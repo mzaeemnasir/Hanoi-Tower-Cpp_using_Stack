@@ -13,18 +13,18 @@ struct node
 };
 
 
-
-
-
+// making Stack (For the Implementation of Hanoi Tower)
 class Stack
 {
 
 private:
 	//LinkList L;	 
 public:
-
+	
+// making In Function Head And Tail 
 	node* head = NULL;
 	node* tail = NULL;
+	
 	// Push the element in the Stack 
 	void Push(int x)
 	{
@@ -44,6 +44,7 @@ public:
 		}
 
 	}
+	
 	// Pop the Element From the Stack 
 	int Pop()
 	{
@@ -63,7 +64,7 @@ public:
 
 	}
 
-	// return Stack Head Value
+	// I will REturn thr LAst Value means (Top Value of Stack ) 
 	int lastValue()
 	{
 		if (head == NULL)
@@ -77,6 +78,7 @@ public:
 		
 	}
 
+	
 	//displaying data Of Stack 
 	void Display()
 	{
@@ -96,7 +98,9 @@ public:
 	}
 };
 
-	bool isSmall(Stack &A, Stack &B) // it will check the 1st disk is smaller then 2nd Disk 
+// it will check the 1st disk is smaller then 2nd Disk
+
+	bool isSmall(Stack &A, Stack &B)  
 	{
 		if (A.head == NULL )
 		{
@@ -113,6 +117,8 @@ public:
 		else { return false; }
 	}
 
+// it will display the all TowerS
+
 	void Display(Stack& A, Stack& B, Stack& C)
 	{
 		cout << "Source      =  ";
@@ -124,8 +130,10 @@ public:
 		cout << endl << endl;
 	}
 
-// Return the middle Term of the Stack 
-void moveDisk(Stack &A, Stack &B) // Move Disk From 1st Pole  To 2nd Pole
+// Move Disk From one Tower to Another Tower Also 
+// it checks if 1st Disk is small then the Condition Reverses
+
+void moveDisk(Stack &A, Stack &B) 
 {
 	if (isSmall(A, B))
 	{
@@ -137,10 +145,16 @@ void moveDisk(Stack &A, Stack &B) // Move Disk From 1st Pole  To 2nd Pole
 	}
 }
 
+
+// Main Hanoi Tower Function 
+
 void hanoiTower(Stack& Src, Stack& Aux, Stack& Des, int& Disks, int& totalMoves)
 {
-	Display(Src, Aux, Des);
-	if (Disks % 2 == 1) // if  Disks are odd 
+	Display(Src, Aux, Des); // Display the All Poles Initial Values Or Places of Disks 
+	
+	// For Odd No of Disks 
+	
+	if (Disks % 2 == 1) 
 	{
 		for (int i = 1; i <= totalMoves; i++)
 		{
@@ -160,7 +174,11 @@ void hanoiTower(Stack& Src, Stack& Aux, Stack& Des, int& Disks, int& totalMoves)
 		}
 	}
 
-	else if (Disks % 2 == 0) // if  Disks are odd 
+	
+	// For EVEN Number of Disks 
+	
+	
+	else if (Disks % 2 == 0) 
 	{
 		for (int i = 1; i <= totalMoves; i++)
 		{
@@ -181,6 +199,8 @@ void hanoiTower(Stack& Src, Stack& Aux, Stack& Des, int& Disks, int& totalMoves)
 	}
 }
 
+// MAin Function 
+
 int main()
 {
 	Stack Src, Aux, Des;   // There are three poles Source , Destination , Auxiliary 
@@ -192,8 +212,12 @@ int main()
 	{
 		Src.Push(i);
 	}
-	totalMoves = pow(2, Disks) - 1;
-	hanoiTower(Src, Aux, Des, Disks, totalMoves);
+	
+	totalMoves = pow(2, Disks) - 1;  // it will check the Totol No OF Moves that will make to Move From Source To DEstination 
+	
+	// calling main hanoi tower function
+	
+	hanoiTower(Src, Aux, Des, Disks, totalMoves); //passing the All Towers And Total Disks And Total Number OF Moves
 
 	return 0;
 	system("PAUSE");
